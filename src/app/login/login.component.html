@@ -1,5 +1,11 @@
-Username: <input type="text" name="username" [(ngModel)]="username" /> Password:
-<input type="password" name="password" [(ngModel)]="password" />
-<button (click)="handleLogin()">Login</button>
+<small *ngIf="invalidLogin">{{ errorMessage }}</small>
+<!-- Here ngIf directive is used to read some boolean value which is interpolated in our component.ts file of this file-->
+<div>
+  Username:
+  <input type="text" name="username" [(ngModel)]="username" /> Password:
+  <input type="password" name="password" [(ngModel)]="password" />
+  Username Entered: {{ username }}
+  <button (click)="handleLogin()">Login</button>
 
-<!--Here mgModel is used insisde banana-in-a-box attribute for two-way binding concept which means whatever we write as input in username parameter, the same will be consoled as per our code in handleLogin() method of login.component.ts -->
+  <!--Here mgModel is a angular directive which is used insisde banana-in-a-box attribute for two-way binding concept which means whatever we write as input in username parameter, the same will be consoled as per our code in handleLogin() method of login.component.ts -->
+</div>
