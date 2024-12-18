@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +15,6 @@ export class LoginComponent implements OnInit {
 
   // creating an action/event method on login button click
   handleLogin() {
-    console.log(this.username);
+    console.log(this.username + ' - ' + this.password);
   }
 }

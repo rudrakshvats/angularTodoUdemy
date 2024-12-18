@@ -1,3 +1,5 @@
-Username: <input type="text" name="username" value="{{ username }}" /> Password:
-<input type="password" name="password]" value="{{ password }}" />
+Username: <input type="text" name="username" [(ngModel)]="username" /> Password:
+<input type="password" name="password" [(ngModel)]="password" />
 <button (click)="handleLogin()">Login</button>
+
+<!--Here mgModel is used insisde banana-in-a-box attribute for two-way binding concept which means whatever we write as input in username parameter, the same will be consoled as per our code in handleLogin() method of login.component.ts -->
