@@ -16,23 +16,39 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" routerLink="/welcome/Rudraksh"
+          <a
+            *ngIf="hardCodedAuthenticationService.isUserLoggedIn()"
+            class="nav-link"
+            routerLink="/welcome/Rudraksh"
             >Home <span class="sr-only">(current)</span></a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/todos">Todos</a>
+          <a
+            *ngIf="hardCodedAuthenticationService.isUserLoggedIn()"
+            class="nav-link"
+            routerLink="/todos"
+            >Todos</a
+          >
         </li>
       </ul>
       <div class="form-inline my-2 my-lg-0">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" routerLink="/login"
+            <a
+              *ngIf="!hardCodedAuthenticationService.isUserLoggedIn()"
+              class="nav-link"
+              routerLink="/login"
               >Login <span class="sr-only">(current)</span></a
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/logout">Logout</a>
+            <a
+              *ngIf="hardCodedAuthenticationService.isUserLoggedIn()"
+              class="nav-link"
+              routerLink="/logout"
+              >Logout</a
+            >
           </li>
         </ul>
       </div>
