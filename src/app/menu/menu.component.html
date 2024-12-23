@@ -1,15 +1,21 @@
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-md navbar-dark bg-secondary">
     <div>
       <a href="https://www.google.com" class="navbar-brand">Go to Google</a>
     </div>
-    <ul class="navbar-nav">
-      <li><a href="/welcome/Rudraksh" class="nav-link"></a>Home</li>
-      <li><a href="/todos" class="nav-link"></a>Todos</li>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a routerLink="welcome/Rudraksh" class="nav-link"></a>Home
+      </li>
+      <li class="nav-item active">
+        <a routerLink="todos" class="nav-link"></a>Todos
+      </li>
     </ul>
-    <ul class="navbar-nav navbar-collapse justify-content-end">
-      <li><a href="/login" class="nav-link"></a>Login</li>
-      <li><a href="/logout" class="nav-link"></a>Logout</li>
+    <ul class="navbar-nav navbar-collapse justify-content-end mr-auto">
+      <li class="nav-item active">
+        <a routerLink="login" class="nav-link"></a>Login
+      </li>
+      <li class="nav-item active"><a href="#" class="nav-link"></a>Logout</li>
     </ul>
   </nav>
 </header>
