@@ -1,21 +1,41 @@
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark bg-secondary">
-    <div>
-      <a href="https://www.google.com" class="navbar-brand">Go to Google</a>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="https://www.google.com">Go to Google</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/welcome/Rudraksh"
+            >Home <span class="sr-only">(current)</span></a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/todos">Todos</a>
+        </li>
+      </ul>
+      <div class="form-inline my-2 my-lg-0">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/login"
+              >Login <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/logout">Logout</a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a routerLink="welcome/Rudraksh" class="nav-link"></a>Home
-      </li>
-      <li class="nav-item active">
-        <a routerLink="todos" class="nav-link"></a>Todos
-      </li>
-    </ul>
-    <ul class="navbar-nav navbar-collapse justify-content-end mr-auto">
-      <li class="nav-item active">
-        <a routerLink="login" class="nav-link"></a>Login
-      </li>
-      <li class="nav-item active"><a href="#" class="nav-link"></a>Logout</li>
-    </ul>
   </nav>
 </header>
