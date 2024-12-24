@@ -27,5 +27,6 @@ export class WelcomeComponent implements OnInit {
   getWelcomeMessage() {
     //console.log('Get Welcome Message');
     console.log(this.welcomeDataService.executeHelloWorldBeanService());
+    this.welcomeDataService.executeHelloWorldBeanService().subscribe(); // subscribe() method helps to call the apis from our controller without any CORS issue as we have provided @CrossOrigins annotation on our controller
   }
 }
