@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgIf } from '@angular/common';
-import { WelcomeDataService } from '../service/data/welcome-data.service';
+import {
+  helloWorldBean,
+  WelcomeDataService,
+} from '../service/data/welcome-data.service';
 
 @Component({
   selector: 'app-welcome',
@@ -12,6 +15,7 @@ import { WelcomeDataService } from '../service/data/welcome-data.service';
 export class WelcomeComponent implements OnInit {
   messageFirst = 'Welcome user: '; // without declaring the datatype typescript knows that this message is string
   messageSecond = ' to our Dashboard!';
+  welcomeMessageFromService: string = '';
   name = '';
   constructor(
     private route: ActivatedRoute,
@@ -27,6 +31,15 @@ export class WelcomeComponent implements OnInit {
   getWelcomeMessage() {
     //console.log('Get Welcome Message');
     console.log(this.welcomeDataService.executeHelloWorldBeanService());
-    this.welcomeDataService.executeHelloWorldBeanService().subscribe(); // subscribe() method helps to call the apis from our controller without any CORS issue as we have provided @CrossOrigins annotation on our controller
+    this.welcomeDataService
+      .executeHelloWorldBeanService()
+      .subscribe((response) => this.handleSuccessfulResponse(response)); // subscribe() method helps to call the apis from our controller without any CORS issue as we have provided @CrossOrigins annotation on our controller and this is an asynchronous call
+    console.log('ending getWelcomeMessage()');
+  }
+
+  handleSuccessfulResponse(response: helloWorldBean) {
+    // console.log(response);
+    // console.log(response.message);
+    this.welcomeMessageFromService = response.message;
   }
 }

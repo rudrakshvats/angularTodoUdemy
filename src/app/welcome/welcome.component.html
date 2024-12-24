@@ -11,4 +11,8 @@
     Get Welcome Message
   </button>
 </div>
+<div class="container" *ngIf="welcomeDataService">
+  <h2>Your customised Welcome message</h2>
+  {{ welcomeMessageFromService }}
+</div>
 <!-- routerLink works just like the href attribute but it reads the routes which we have declared in our router file-->
