@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { TodoDataService } from '../service/data/todo-data.service';
+import { Router } from '@angular/router';
 
 export class Todo {
   // creating a class with parameters below and their datatypes
@@ -33,7 +34,7 @@ export class ListTodosComponent implements OnInit {
   todos: Todo[] = [];
   message!: string;
 
-  constructor(public todoDataService: TodoDataService) {}
+  constructor(public todoDataService: TodoDataService, public router: Router) {}
 
   ngOnInit() {
     this.refreshTodos();
@@ -53,5 +54,10 @@ export class ListTodosComponent implements OnInit {
       this.message = `Todo ${id} Deleted Successfully!`;
       this.refreshTodos();
     });
+  }
+
+  editTodo(id: number) {
+    console.log(`Edit/Update Todo ${id}`);
+    this.router.navigate(['todos', id]);
   }
 }

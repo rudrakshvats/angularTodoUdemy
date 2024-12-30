@@ -6,6 +6,7 @@ import { ErrorComponent } from './error/error.component';
 import { ListTodosComponent } from './list-todos/list-todos.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RouteGuardService } from './service/route-guard.service';
+import { TodoComponent } from './todo/todo.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -21,6 +22,11 @@ const routes: Routes = [
     canActivate: [RouteGuardService],
   },
   { path: 'logout', component: LogoutComponent },
+  {
+    path: 'todos/:id',
+    component: TodoComponent,
+    canActivate: [RouteGuardService],
+  },
   { path: '**', component: ErrorComponent }, // here ** means if any other part is entered than above paths then we will redirect to Error Page
 ];
 

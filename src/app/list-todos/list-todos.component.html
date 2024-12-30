@@ -16,6 +16,10 @@
         <td>{{ todo.done }}</td>
         <td>{{ todo.targetDate | date | uppercase }}</td>
         <td>
+          <button (click)="editTodo(todo.id)" class="btn btn-success">
+            Edit/Update
+          </button>
+          &nbsp;
           <button (click)="deleteTodo(todo.id)" class="btn btn-warning">
             <!-- Since we are looping in inside list of todos and we know their is an id parameter, then we can simply pass this id in our deleteTodo() method -->
             Delete
