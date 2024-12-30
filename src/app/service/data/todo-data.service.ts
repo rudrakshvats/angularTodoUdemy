@@ -14,4 +14,10 @@ export class TodoDataService {
     );
     //console.log('Execute Hello World Bean Service');
   }
+
+  deleteTodo(username: string, id: number) {
+    return this.httpClient.delete(
+      `http://localhost:8081/users/${username}/todos/${id}`
+    );
+  }
 }

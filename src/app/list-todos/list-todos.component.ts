@@ -31,13 +31,27 @@ export class ListTodosComponent implements OnInit {
   //   description: 'Learn Angular',
   // };
   todos: Todo[] = [];
+  message!: string;
 
   constructor(public todoDataService: TodoDataService) {}
 
   ngOnInit() {
+    this.refreshTodos();
+  }
+
+  refreshTodos() {
     this.todoDataService.retrieveAllTodos('Rudraksh').subscribe((response) => {
       console.log(response);
       this.todos = response;
+    });
+  }
+
+  deleteTodo(id: number) {
+    console.log(`delete todo: ${id}`);
+    this.todoDataService.deleteTodo('Rudraksh', id).subscribe((response) => {
+      console.log(response);
+      this.message = `Todo ${id} Deleted Successfully!`;
+      this.refreshTodos();
     });
   }
 }

@@ -1,10 +1,13 @@
 <h1>My Todos</h1>
+
+<div class="alert alert-success" *ngIf="message">{{ message }}</div>
 <div class="container">
   <table class="table">
     <thead>
       <th>Description</th>
       <th>Is Done</th>
       <th>Target Date</th>
+      <th>Actions</th>
     </thead>
     <tbody>
       <tr *ngFor="let todo of todos">
@@ -12,6 +15,12 @@
         <td>{{ todo.description }}</td>
         <td>{{ todo.done }}</td>
         <td>{{ todo.targetDate | date | uppercase }}</td>
+        <td>
+          <button (click)="deleteTodo(todo.id)" class="btn btn-warning">
+            <!-- Since we are looping in inside list of todos and we know their is an id parameter, then we can simply pass this id in our deleteTodo() method -->
+            Delete
+          </button>
+        </td>
         <!-- here using | with date formats the date in normal format removing time and time zone from Date object and just printing the date, similary we can use | with uppercase to print date in upperca-->
       </tr>
     </tbody>
