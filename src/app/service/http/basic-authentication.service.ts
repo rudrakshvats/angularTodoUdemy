@@ -28,7 +28,7 @@ export class BasicAuthenticationService {
       Authorization: basicAuthHeaderString,
     }); // passing our Base64 string inside the headers by the field Authorization
     return this.httpClient
-      .get<AuthenticationBean>(`http://localhost:8081/basicAuth`, { headers })
+      .get<AuthenticationBean>(`http://localhost:8081/basicauth`, { headers })
       .pipe(
         // this pipe method basically helps us to declare what should be done in case of success or failure
         map((data) => {

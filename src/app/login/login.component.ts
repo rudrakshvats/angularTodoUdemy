@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
 import { BasicAuthenticationService } from '../service/http/basic-authentication.service';
-import { error } from 'console';
 
 @Component({
   selector: 'app-login',
@@ -52,7 +51,7 @@ export class LoginComponent implements OnInit {
         (data) => {
           // handle the success case
           console.log(data);
-          this.router.navigate(['welcome']);
+          this.router.navigate(['welcome', this.username]);
           this.invalidLogin = false;
         },
         (error) => {
