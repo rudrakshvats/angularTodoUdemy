@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
+import { BasicAuthenticationService } from '../service/http/basic-authentication.service';
+import { error } from 'console';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router, // here we are basically injecting the router component variable by the concept of dependency injection as we do in Java, note that dependency injection in one component for other component is done inside the constructor
-    private hardCodedAuthenticationService: HardcodedAuthenticationService // since HardcideAuthenticationService is injectable then we can inject it inside our login component service like this
+    private hardCodedAuthenticationService: HardcodedAuthenticationService, // since HardcideAuthenticationService is injectable then we can inject it inside our login component service like this
+    private basicAuthenticationService: BasicAuthenticationService
   ) {}
 
   ngOnInit(): void {}
@@ -37,5 +40,26 @@ export class LoginComponent implements OnInit {
     } else {
       this.invalidLogin = true;
     }
+  }
+
+  // creating an action/event method on login button click using basic authentication service
+  handleBasicAuthLogin() {
+    console.log(this.username);
+    // if (this.username === 'Rudraksh' && this.password === 'dummy') {
+    this.basicAuthenticationService
+      .executeAuthenticationService(this.username, this.password)
+      .subscribe(
+        (data) => {
+          // handle the success case
+          console.log(data);
+          this.router.navigate(['welcome']);
+          this.invalidLogin = false;
+        },
+        (error) => {
+          // handle the failure case
+          console.log(error);
+          this.invalidLogin = true;
+        }
+      );
   }
 }

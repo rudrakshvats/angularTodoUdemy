@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   // @Injectable annotation makes this service
@@ -26,10 +27,16 @@ export class BasicAuthenticationService {
     let headers = new HttpHeaders({
       Authorization: basicAuthHeaderString,
     }); // passing our Base64 string inside the headers by the field Authorization
-    return this.httpClient.get<AuthenticationBean>(
-      `http://localhost:8081/basicAuth`,
-      { headers }
-    );
+    return this.httpClient
+      .get<AuthenticationBean>(`http://localhost:8081/basicAuth`, { headers })
+      .pipe(
+        // this pipe method basically helps us to declare what should be done in case of success or failure
+        map((data) => {
+          // for success case we are going to set the username in authenticatedUser variable in browser's local storage
+          sessionStorage.setItem('authenticatedUser', username);
+          return data; // make sure to return data so that it is available to anyone who is using this service
+        })
+      );
   }
 
   isUserLoggedIn() {
