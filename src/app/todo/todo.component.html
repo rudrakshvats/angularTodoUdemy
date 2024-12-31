@@ -1,19 +1,34 @@
 <h1>Todo</h1>
 <div class="container">
+  <div class="alert alert-warning" *ngIf="todoForm.dirty && todoForm.invalid">
+    <!--here todoForm.dirty makes sure to print the warnign message only when any of the required fields are absent-->
+    Please enter mandatory fields
+  </div>
+  <div class="alert alert-warning" *ngIf="todoForm.dirty && targetDate.invalid">
+    Please enter Target Date
+  </div>
+  <div
+    class="alert alert-warning"
+    *ngIf="todoForm.dirty && description.invalid"
+  >
+    Please enter Description
+  </div>
   <form (ngSubmit)="!todoForm.invalid && saveTodo()" #todoForm="ngForm">
+    <!-- here #todoForm is a target variable which can be used anywhere in the html file to provide basic functionalities-->
     <!-- todoForm.invalid method is basically checkind and invalidating our form and if it is not invalid then it will saveTodo by form else it will not-->
     <fieldset class="form-group">
-      <label>Description</label>
+      <label>Description <span style="color: red">*</span></label>
       <input
         type="text"
         class="form-control"
         name="description"
         required="required"
         [(ngModel)]="todo.description"
+        #description="ngModel"
       />
     </fieldset>
     <fieldset class="form-group">
-      <label>Target Date</label>
+      <label>Target Date <span style="color: red">*</span></label>
       <input
         type="date"
         class="form-control"
@@ -21,6 +36,7 @@
         required="required"
         [ngModel]="todo.targetDate | date : 'yyyy-MM-dd'"
         (ngModelChange)="todo.targetDate = $event"
+        #targetDate="ngModel"
       />
       <!-- convert date into specified format by pipe operator and targetting that date is to be filled on the event trigger-->
     </fieldset>
