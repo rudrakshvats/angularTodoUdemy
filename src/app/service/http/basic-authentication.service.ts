@@ -41,6 +41,20 @@ export class BasicAuthenticationService {
       );
   }
 
+  executeJWTAuthenticationService(username: string, password: string) {
+    return this.httpClient
+      .post<any>(`${API_URL}/authenticate`, { username, password })
+      .pipe(
+        // this pipe method basically helps us to declare what should be done in case of success or failure
+        map((data) => {
+          // for success case we are going to set the username in authenticatedUser variable in browser's local storage
+          sessionStorage.setItem(AUTHENTICATED_USER, username);
+          sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
+          return data; // make sure to return data so that it is available to anyone who is using this service
+        })
+      );
+  }
+
   getAuthenticatedUser() {
     return sessionStorage.getItem(AUTHENTICATED_USER);
   }

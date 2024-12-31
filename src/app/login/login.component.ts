@@ -61,4 +61,25 @@ export class LoginComponent implements OnInit {
         }
       );
   }
+
+  // creating an action/event method on login button click using JWT authentication
+  handleJWTAuthLogin() {
+    console.log(this.username);
+    // if (this.username === 'Rudraksh' && this.password === 'dummy') {
+    this.basicAuthenticationService
+      .executeJWTAuthenticationService(this.username, this.password)
+      .subscribe(
+        (data) => {
+          // handle the success case
+          console.log(data);
+          this.router.navigate(['welcome', this.username]);
+          this.invalidLogin = false;
+        },
+        (error) => {
+          // handle the failure case
+          console.log(error);
+          this.invalidLogin = true;
+        }
+      );
+  }
 }
