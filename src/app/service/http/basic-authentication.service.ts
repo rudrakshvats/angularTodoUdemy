@@ -9,16 +9,16 @@ import { map } from 'rxjs/operators';
 export class BasicAuthenticationService {
   constructor(public httpClient: HttpClient) {}
 
-  authenticate(username: string, password: string) {
-    // simply created a method for authentication for hardcoded values so that user can login according to it, the arguments/parameters can simply be used when we use it inside some other service
-    //console.log('before', this.isUserLoggedIn());
-    if (username === 'Rudraksh' && password === 'dummy') {
-      sessionStorage.setItem('authenticatedUser', username);
-      //console.log('after', this.isUserLoggedIn());
-      return true;
-    }
-    return false;
-  }
+  // authenticate(username: string, password: string) {
+  //   // simply created a method for authentication for hardcoded values so that user can login according to it, the arguments/parameters can simply be used when we use it inside some other service
+  //   //console.log('before', this.isUserLoggedIn());
+  //   if (username === 'Rudraksh' && password === 'dummy') {
+  //     sessionStorage.setItem('authenticatedUser', username);
+  //     //console.log('after', this.isUserLoggedIn());
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
   executeAuthenticationService(username: string, password: string) {
     let basicAuthHeaderString =
@@ -34,9 +34,20 @@ export class BasicAuthenticationService {
         map((data) => {
           // for success case we are going to set the username in authenticatedUser variable in browser's local storage
           sessionStorage.setItem('authenticatedUser', username);
+          sessionStorage.setItem('token', basicAuthHeaderString);
           return data; // make sure to return data so that it is available to anyone who is using this service
         })
       );
+  }
+
+  getAuthenticatedUser() {
+    return sessionStorage.getItem('authenticatedUser');
+  }
+
+  getAuthenticatedToken() {
+    if (this.getAuthenticatedUser()) {
+      return sessionStorage.getItem('token');
+    }
   }
 
   isUserLoggedIn() {
@@ -46,6 +57,7 @@ export class BasicAuthenticationService {
 
   logout() {
     sessionStorage.removeItem('authenticatedUser');
+    sessionStorage.removeItem('token');
   }
 }
 
