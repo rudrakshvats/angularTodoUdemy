@@ -32,8 +32,9 @@ export class TodoComponent implements OnInit {
 
   saveTodo() {
     if (-1 == this.id) {
+      // when comparing objects use === and when comparing primtive datatype use ==
       this.todoDataService
-        .updateTodo('Rudraksh', this.id, this.todo)
+        .createTodo('Rudraksh', this.todo)
         .subscribe((data) => {
           console.log(data);
           this.router.navigate(['todos']);
